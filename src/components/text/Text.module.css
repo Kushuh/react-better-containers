@@ -1,0 +1,13 @@
+* {
+    --placeholder-color: #000;
+}
+
+.lines {
+
+}
+
+.blurry {
+    color: transparent!important;
+    transition: linear 0s;
+    text-shadow: 0 0 0.5em var(--placeholder-color)!important;
+}

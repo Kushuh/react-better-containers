@@ -1,28 +1,39 @@
 {
-  "name": "react-texts",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
+  "name": "react-better-containers",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "email": "kuzanisu@gmail.com",
+    "name": "Kushuh",
+    "url": "https://github.com/kushuh"
   },
+  "description": "Handsome containers for React.",
+  "version": "1.0.0",
+  "private": false,
+  "dependencies": {
+    "kushuh-react-utils": "^1.1.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "main": "./lib/index.js",
+  "files": [
+    "lib/*.js",
+    "build/*"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test-and-publish": "yarn test && yarn build && yarn publish",
+    "build": "rollup -c && tsc",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "plugin:@typescript-eslint/recommended"
+    ]
   },
   "browserslist": {
     "production": [
@@ -35,5 +46,38 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "keywords": [
+    "containers",
+    "boxes",
+    "parsers",
+    "handsome",
+    "react",
+    "reactjs",
+    "intuitive",
+    "simple",
+    "efficient"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@jest/globals": "^26.0.1",
+    "@teamsupercell/typings-for-css-modules-loader": "^2.1.1",
+    "@types/react": "^16.9.34",
+    "@types/react-css-modules": "^4.6.2",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^26.0.1",
+    "react-scripts": "^3.4.1",
+    "rollup": "^2.8.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "typescript": "^3.9.2",
+    "typescript-plugin-css-modules": "^2.3.0"
   }
 }
