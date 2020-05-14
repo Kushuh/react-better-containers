@@ -13,14 +13,16 @@ interface PlaceholderOptions {
 interface TextProps {
     placeholder?: 'lines' | 'blurry';
     tag?: string;
-    children?: React.ReactNode;
+    children?: React.ReactNode | React.ReactNodeArray;
+    className?: string;
+    style?: Record<string, any>;
     placeholderOptions?: PlaceholderOptions;
+    innerRef?: ((instance: unknown) => void) | React.MutableRefObject<unknown>;
     [x: string]: any;
 }
 
 interface TextState {
     fontFaceReady: boolean;
-    ref?: React.RefObject<HTMLInputElement>;
 }
 
 export {SpannerProps, TextProps, TextState};

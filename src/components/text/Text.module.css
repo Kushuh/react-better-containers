@@ -1,8 +1,12 @@
 * {
-    --placeholder-color: #000;
+    --placeholder-color: inherit;
 }
 
 .lines {
+
+}
+
+.linesElement {
 
 }
 

@@ -45,7 +45,7 @@ const mapper = (
 /**
  * Wraps each visible character of an element in a special span container, while keeping complex DOM structures.
  */
-const Spanner = (props: SpannerProps) => {
+const Spanner: (p) => React.ReactNode[] = (props: SpannerProps) => {
     return React.Children.map(
         props.children,
         c => mapper(c, props)
