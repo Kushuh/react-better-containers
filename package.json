@@ -16,6 +16,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kushuh/react-better-containers"
+  },
   "main": "./build/index.js",
   "files": [
     "build/*"
