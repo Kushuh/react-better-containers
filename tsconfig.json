@@ -11,17 +11,18 @@
       "dom"
     ],
     "types": ["node"],
-    "declaration": true,
+    "declaration": false,
     "sourceMap": true,
-    "outDir": "lib",
+    "outDir": "build",
     "baseUrl": "src",
     "jsx": "react",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "exclude": [
-    "node_modules/"
-  ],
   "include": [
     "src/*"
+  ],
+  "exclude": [
+    "node_modules/",
+    "src/demos/*"
   ]
 }

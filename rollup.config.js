@@ -24,7 +24,7 @@ export default [
 				exclude: 'node_modules/**'
 			}),
 			typescript({
-				typescript: require('typescript')
+				typescript: require('typescript'), declaration: true
 			}),
 			postcss({
 				plugins: [autoprefixer()],
