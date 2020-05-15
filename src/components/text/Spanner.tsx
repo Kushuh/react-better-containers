@@ -1,6 +1,5 @@
 import React from 'react';
 import errors from './vars/errors';
-import {SpannerProps} from './typings/typings';
 import {addPropsToChildren} from 'kushuh-react-utils';
 
 interface SpannerProps {

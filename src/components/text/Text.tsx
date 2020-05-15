@@ -1,5 +1,4 @@
 import React from 'react';
-import {TextProps, TextState} from './typings/typings';
 import css from './Text.module.css';
 import Spanner from './Spanner';
 import {loadFonts} from 'kushuh-react-utils';
