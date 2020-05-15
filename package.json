@@ -8,7 +8,7 @@
     "url": "https://github.com/kushuh"
   },
   "description": "Handsome containers for React.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "dependencies": {
     "@types/react-dom": "^16.9.8",
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "https://github.com/Kushuh/react-better-containers"
   },
-  "main": "./build/index.js",
+  "main": "./build/index-build.js",
   "files": [
     "build/*"
   ],
