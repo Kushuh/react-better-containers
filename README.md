@@ -40,7 +40,7 @@
 
 ## About
 
-React Better Containers contains miscellaneous React Component to write faster with better results.
+React Better Containers contains miscellaneous React Components to write faster with better results.
 
 ## Components
 
