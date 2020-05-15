@@ -83,11 +83,15 @@ Both static and functional ref works.
 | name | default | description |
 | :--- | :--- | :--- |
 | tag | 'p' | Render the component with a custom tag. Every HTML component is supported. |
-| placeholder | 'lines' | Determine the placeholder to render when text font isn't fully loaded. |
+| placeholder | 'lines' | Determine the placeholder to render when text font isn't fully loaded. **(1)** |
 | placeholderOptions | - | Control the behavior of the placeholder. |
 | placeholderOptions.color | inherit | Color to render the placeholder effect. |
 | placeholderOptions.linesHeight | 0.4 | Height in em of the replacement line. Only has effect with placeholder set to 'lines'. |
 | forcePlaceholder | false | Force placeholder to render while set to true. |
+
+**(1)** Possible values are 'lines', 'blurry' and 'none'. Null or undefined is equivalent to 'lines'.
+
+![placeholder demo]()
 
 ### Spanner
 
