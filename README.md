@@ -91,7 +91,7 @@ Both static and functional ref works.
 
 **(1)** Possible values are 'lines', 'blurry' and 'none'. Null or undefined is equivalent to 'lines'.
 
-![placeholder demo]()
+![placeholder demo](https://github.com/Kushuh/react-better-containers/blob/master/resources/gifs/Demo-Text-Placeholders.gif)
 
 ### Spanner
 
