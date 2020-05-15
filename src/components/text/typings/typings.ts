@@ -26,4 +26,4 @@ interface TextState {
     fontFaceReady: boolean;
 }
 
-export type {SpannerProps, TextProps, TextState};
+export {SpannerProps, TextProps, TextState};
