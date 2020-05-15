@@ -1,7 +1,8 @@
 import React from 'react';
-import {TextProps, TextState} from './vars/interfaces';
+import {TextProps, TextState} from './typings/typings';
 import css from './Text.module.css';
 import Spanner from './Spanner';
+import {loadFonts} from 'kushuh-react-utils';
 
 /**
  * Hide the text with placeholders while font is loading (optional).
@@ -14,8 +15,10 @@ const getClassNameFromPlaceholder: (p) => string = (placeholder: string | null) 
             return css.lines;
         case 'blurry':
             return css.blurry;
-        default:
+        case 'none':
             return '';
+        default:
+            return css.lines;
     }
 }
 
@@ -32,8 +35,14 @@ class Text extends React.Component<TextProps, TextState> {
         this.props.innerRef || React.createRef();
 
     componentDidMount() {
-        const {current} = this.ref;
+        if (!this.ref) return;
 
+        const {current} = this.ref;
+        if (current) {
+            loadFonts(current as HTMLElement)
+                .catch(console.error)
+                .finally(() => this.setState({fontFaceReady: true}));
+        }
     }
 
     render() {
@@ -46,6 +55,7 @@ class Text extends React.Component<TextProps, TextState> {
             className,
             children,
             innerRef,
+            forcePlaceholder,
             ...props
         } = this.props;
 
@@ -66,9 +76,12 @@ class Text extends React.Component<TextProps, TextState> {
         return React.createElement(
             tag,
             {
-                className: `${className} ${fontFaceReady ? '' : getClassNameFromPlaceholder(placeholder)}`,
-                style: Object.assign(style, {
-                    '--placeholder-color': placeholderOptions.color || style.color
+                className: `${className} ${
+                    fontFaceReady && !forcePlaceholder ? '' : getClassNameFromPlaceholder(placeholder)
+                }`,
+                style: Object.assign({...style || {}}, {
+                    '--placeholder-color': (placeholderOptions || {}).color || (style || {}).color,
+                    '--better-containers-lines-height': `${(placeholderOptions || {}).linesHeight || 0.4}em`
                 }),
                 ref: typeof this.props.innerRef === 'function' ?
                     node => {
@@ -78,8 +91,9 @@ class Text extends React.Component<TextProps, TextState> {
                     } : this.ref,
                 ...props
             },
-            placeholder === 'lines' ?
-                Spanner({children, spannerClass: css.linesElement}) :
+            (placeholder === 'lines' || placeholder == null) &&
+            (!fontFaceReady || forcePlaceholder) ?
+                [Spanner({children, spannerClass: css.linesElement}), <span className='placeholder'/>] :
                 children
         );
     }
@@ -88,4 +102,11 @@ class Text extends React.Component<TextProps, TextState> {
 /**
  * Keep parent ref consistent, if any.
  */
-export default React.forwardRef((props, ref) => <Text innerRef={ref} {...props}/>);
+export default (
+    React.forwardRef(
+        (
+            props: TextProps,
+            ref: ((instance: any) => void) | React.MutableRefObject<any> | null | undefined
+        ) => <Text innerRef={ref} {...props}/>
+    )
+);

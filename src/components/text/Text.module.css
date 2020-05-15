@@ -3,11 +3,19 @@
 }
 
 .lines {
-
+    --better-containers-lines-height: 0.4em;
 }
 
 .linesElement {
-
+    transition: linear 0s;
+    color: transparent;
+    background-color: var(--placeholder-color);
+    margin: 0;
+    height: var(--better-containers-lines-height);
+    width: 0.6em;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle!important;
 }
 
 .blurry {

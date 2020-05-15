@@ -1,17 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "outDir": "build",
-    "jsx": "react",
-    "noImplicitAny": false,
-    "removeComments": true,
-    "sourceMap": false,
+    "target": "es5",
     "module": "ESNext",
-    "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "src",
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "resolveJsonModule": true,
+    "lib": [
+      "es2015",
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ],
+    "declaration": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "jsx": "react",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "exclude": [
     "node_modules/"

@@ -1,4 +1,10 @@
-import Spanner from './components/text/Spanner';
-import Text from './components/text/Text';
+import './index.css';
+import ReactDOM from 'react-dom';
+import * as React from "react";
+import './index.css';
+import TextDemo from './demos/TextDemo';
 
-export {Spanner, Text};
+ReactDOM.render(
+    React.createElement(TextDemo, {}, null),
+    document.getElementById('root')
+);

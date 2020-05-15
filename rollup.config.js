@@ -9,7 +9,7 @@ export default [
 	// CommonJS
 	{
 		preserveModules: true,
-		input: './src/index.ts',
+		input: './src/index-build.ts',
 		output: [
 			{
 				dir: './build',

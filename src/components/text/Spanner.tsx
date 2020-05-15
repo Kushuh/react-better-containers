@@ -1,6 +1,6 @@
 import React from 'react';
 import errors from './vars/errors';
-import {SpannerProps} from './vars/interfaces';
+import {SpannerProps} from './typings/typings';
 import {addPropsToChildren} from 'kushuh-react-utils';
 
 /**
@@ -19,9 +19,9 @@ const mapper = (
         if (childNode != null) {
             if (typeof childNode === 'number' || typeof childNode === 'string') {
                 return childNode.toString().split('').map(
-                    char => props.separators != null && props.separators.includes(char) ?
+                    char => props.ignore != null && props.ignore.includes(char) ?
                         char :
-                        <span className={props.spannerClass || 'spanner'} children={char}/>
+                        <span className={props.spannerClass || 'spanned'} children={char}/>
                 );
             } else if (React.isValidElement(childNode)) {
                 /**
@@ -45,11 +45,12 @@ const mapper = (
 /**
  * Wraps each visible character of an element in a special span container, while keeping complex DOM structures.
  */
-const Spanner: (p) => React.ReactNode[] = (props: SpannerProps) => {
-    return React.Children.map(
-        props.children,
-        c => mapper(c, props)
-    );
-};
+const Spanner: (props: SpannerProps) => Array<Exclude<any[] | any | null, boolean | null | undefined>> | null | undefined =
+    (props: SpannerProps) => {
+        return React.Children.map(
+            props.children,
+            c => mapper(c, props)
+        );
+    };
 
 export default Spanner;

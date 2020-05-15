@@ -1,28 +1,30 @@
 import * as React from 'react';
+import {PropsWithChildren} from "react";
 
 interface SpannerProps {
-    separators?: Array<string>;
+    ignore?: Array<string>;
     spannerClass?: string;
     children?: React.ReactNode | React.ReactNodeArray;
 }
 
 interface PlaceholderOptions {
     color?: string;
+    linesHeight?: number;
 }
 
 interface TextProps {
-    placeholder?: 'lines' | 'blurry';
+    placeholder?: 'lines' | 'blurry' | 'none';
     tag?: string;
-    children?: React.ReactNode | React.ReactNodeArray;
     className?: string;
     style?: Record<string, any>;
     placeholderOptions?: PlaceholderOptions;
-    innerRef?: ((instance: unknown) => void) | React.MutableRefObject<unknown>;
-    [x: string]: any;
+    innerRef?:  ((instance: any) => void) | React.MutableRefObject<any> | null;
+    forcePlaceholder?: boolean;
+    [s: string]: any;
 }
 
 interface TextState {
     fontFaceReady: boolean;
 }
 
-export {SpannerProps, TextProps, TextState};
+export type {SpannerProps, TextProps, TextState};
