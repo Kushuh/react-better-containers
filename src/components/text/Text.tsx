@@ -4,6 +4,26 @@ import css from './Text.module.css';
 import Spanner from './Spanner';
 import {loadFonts} from 'kushuh-react-utils';
 
+interface PlaceholderOptions {
+    color?: string;
+    linesHeight?: number;
+}
+
+interface TextProps {
+    placeholder?: 'lines' | 'blurry' | 'none';
+    tag?: string;
+    className?: string;
+    style?: Record<string, any>;
+    placeholderOptions?: PlaceholderOptions;
+    innerRef?:  ((instance: any) => void) | React.MutableRefObject<any> | null;
+    forcePlaceholder?: boolean;
+    [s: string]: any;
+}
+
+interface TextState {
+    fontFaceReady: boolean;
+}
+
 /**
  * Hide the text with placeholders while font is loading (optional).
  *

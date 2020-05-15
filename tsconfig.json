@@ -11,7 +11,7 @@
       "dom"
     ],
     "types": ["node"],
-    "declaration": false,
+    "declaration": true,
     "sourceMap": true,
     "outDir": "build",
     "baseUrl": "src",

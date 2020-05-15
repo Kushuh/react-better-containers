@@ -3,6 +3,12 @@ import errors from './vars/errors';
 import {SpannerProps} from './typings/typings';
 import {addPropsToChildren} from 'kushuh-react-utils';
 
+interface SpannerProps {
+    ignore?: Array<string>;
+    spannerClass?: string;
+    children?: React.ReactNode | React.ReactNodeArray;
+}
+
 /**
  * Default mapper.
  *
