@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {PropsWithChildren} from "react";
 
 interface SpannerProps {
     ignore?: Array<string>;
