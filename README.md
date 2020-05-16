@@ -73,7 +73,7 @@ Now with all parameters:
 >My text.</Text>
 ```
 
-ℹ If a ref is passed as an argument, it will automatically be applied to the rendered element.
+ℹ️ If a ref is passed as an argument, it will automatically be applied to the rendered element.
 Both static and functional ref works.
 
 #### Props
@@ -95,7 +95,7 @@ Both static and functional ref works.
 
 ### Spanner
 
-Wraps each character of child textNodes in a custom span.
+Wraps each character of descendant textNodes in a custom span.
 
 ```jsx
 <Spanner>
