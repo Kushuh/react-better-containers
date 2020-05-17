@@ -22,7 +22,7 @@ const mapper = (childNode: React.ReactNode, props: SpannerProps, index: string) 
         if (childNode != null) {
             if (typeof childNode === 'number' || typeof childNode === 'string') {
                 return childNode.toString().split('').map(
-                    (char, i) => props.ignore != null && props.ignore.includes(char) ?
+                    (char, i) => (props.ignore || []).includes(char) ?
                         char :
                         <span key={`${index}-${i}`} className={props.spannerClass || 'spanned'} children={char}/>
                 );
