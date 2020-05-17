@@ -8,7 +8,7 @@
     "url": "https://github.com/kushuh"
   },
   "description": "Handsome containers for React.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": false,
   "dependencies": {
     "@types/react-dom": "^16.9.8",
@@ -22,7 +22,7 @@
   },
   "main": "./build/index.js",
   "files": [
-    "./build/*"
+    "build/*"
   ],
   "scripts": {
     "test-and-publish": "yarn build && yarn publish",
