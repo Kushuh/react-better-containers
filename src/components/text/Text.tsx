@@ -83,6 +83,17 @@ class Text extends React.Component<TextProps, TextState> {
          */
         tag = tag || 'p';
 
+        if (!['input', 'textarea'].includes(tag)) {
+            if (
+                (placeholder === 'lines' || placeholder == null) &&
+                (!fontFaceReady || forcePlaceholder)
+            ) {
+                children = [Spanner({children, spannerClass: css.linesElement}), <span className='placeholder'/>];
+            }
+        } else {
+            children = null;
+        }
+
         /**
          * React.createElement avoids some Typescript parsing errors (since component tag is a variable).
          *
@@ -110,10 +121,7 @@ class Text extends React.Component<TextProps, TextState> {
                     } : this.ref,
                 ...props
             },
-            (placeholder === 'lines' || placeholder == null) &&
-            (!fontFaceReady || forcePlaceholder) ?
-                [Spanner({children, spannerClass: css.linesElement}), <span className='placeholder'/>] :
-                children
+            children
         );
     }
 }
