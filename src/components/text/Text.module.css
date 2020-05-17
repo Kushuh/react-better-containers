@@ -1,5 +1,5 @@
 * {
-    --placeholder-color: inherit;
+    --text-placeholder-color: inherit;
 }
 
 .lines {
@@ -9,7 +9,7 @@
 .linesElement {
     transition: linear 0s;
     color: transparent;
-    background-color: var(--placeholder-color);
+    background-color: var(--text-placeholder-color);
     margin: 0;
     height: var(--better-containers-lines-height);
     width: 0.6em;
@@ -21,5 +21,5 @@
 .blurry {
     color: transparent!important;
     transition: linear 0s;
-    text-shadow: 0 0 0.5em var(--placeholder-color)!important;
+    text-shadow: 0 0 0.5em var(--text-placeholder-color)!important;
 }

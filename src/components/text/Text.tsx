@@ -9,11 +9,11 @@ interface PlaceholderOptions {
 }
 
 interface TextProps {
-    placeholder?: 'lines' | 'blurry' | 'none';
+    textPlaceholder?: 'lines' | 'blurry' | 'none';
     tag?: keyof JSX.IntrinsicElements;
     className?: string;
     style?: CSSProperties;
-    placeholderOptions?: PlaceholderOptions;
+    textPlaceholderOptions?: PlaceholderOptions;
     innerRef?:  ((instance: any) => void) | React.MutableRefObject<any> | null;
     forcePlaceholder?: boolean;
     [s: string]: any;
@@ -69,8 +69,8 @@ class Text extends React.Component<TextProps, TextState> {
         let {
             tag,
             style,
-            placeholderOptions,
-            placeholder,
+            textPlaceholderOptions,
+            textPlaceholder,
             className,
             children,
             innerRef,
@@ -85,7 +85,7 @@ class Text extends React.Component<TextProps, TextState> {
 
         if (!['input', 'textarea'].includes(tag)) {
             if (
-                (placeholder === 'lines' || placeholder == null) &&
+                (textPlaceholder === 'lines' || textPlaceholder == null) &&
                 (!fontFaceReady || forcePlaceholder)
             ) {
                 children = [
@@ -100,14 +100,14 @@ class Text extends React.Component<TextProps, TextState> {
 
         const tClassName = `
                 ${className} 
-                ${fontFaceReady && !forcePlaceholder ? '' : getClassNameFromPlaceholder(placeholder)}
+                ${fontFaceReady && !forcePlaceholder ? '' : getClassNameFromPlaceholder(textPlaceholder)}
             `;
 
         const tStyle = Object.assign(
             {...style || {}},
             {
-                '--placeholder-color': (placeholderOptions || {}).color || (style || {}).color,
-                '--better-containers-lines-height': `${(placeholderOptions || {}).linesHeight || 0.4}em`
+                '--placeholder-color': (textPlaceholderOptions || {}).color || (style || {}).color,
+                '--better-containers-lines-height': `${(textPlaceholderOptions || {}).linesHeight || 0.4}em`
             }
         );
 
