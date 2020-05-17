@@ -13,20 +13,18 @@ interface SpannerProps {
  *
  * @param childNode
  * @param props
+ * @param index
  */
-const mapper = (
-    childNode: React.ReactNode,
-    props: SpannerProps
-) => {
+const mapper = (childNode: React.ReactNode, props: SpannerProps, index: string) => {
         /**
          * Since null is a valid React Node, we remove it from spanned content.
          */
         if (childNode != null) {
             if (typeof childNode === 'number' || typeof childNode === 'string') {
                 return childNode.toString().split('').map(
-                    char => props.ignore != null && props.ignore.includes(char) ?
+                    (char, i) => props.ignore != null && props.ignore.includes(char) ?
                         char :
-                        <span className={props.spannerClass || 'spanned'} children={char}/>
+                        <span key={`${index}-${i}`} className={props.spannerClass || 'spanned'} children={char}/>
                 );
             } else if (React.isValidElement(childNode)) {
                 /**
@@ -35,7 +33,7 @@ const mapper = (
                 return addPropsToChildren(
                     childNode,
                     ({children, ...props}) => ({
-                        children: React.Children.map(children, c => mapper(c, props)),
+                        children: React.Children.map(children, (c, i) => mapper(c, props, `${index}-${i}`)),
                         ...props
                     })
                 );
@@ -50,12 +48,10 @@ const mapper = (
 /**
  * Wraps each visible character of an element in a special span container, while keeping complex DOM structures.
  */
-const Spanner: (props: SpannerProps) => Array<Exclude<any[] | any | null, boolean | null | undefined>> | null | undefined =
-    (props: SpannerProps) => {
-        return React.Children.map(
-            props.children,
-            c => mapper(c, props)
-        );
-    };
+const Spanner: (props: SpannerProps) => React.ReactNode =
+    (props: SpannerProps) => React.Children.map(
+        props.children,
+        (c, index) => mapper(c, props, `${index}`)
+    );
 
 export default Spanner;

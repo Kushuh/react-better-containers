@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import css from './Text.module.css';
 import Spanner from './Spanner';
 import {loadFonts} from 'kushuh-react-utils';
@@ -10,9 +10,9 @@ interface PlaceholderOptions {
 
 interface TextProps {
     placeholder?: 'lines' | 'blurry' | 'none';
-    tag?: string;
+    tag?: keyof JSX.IntrinsicElements;
     className?: string;
-    style?: Record<string, any>;
+    style?: CSSProperties;
     placeholderOptions?: PlaceholderOptions;
     innerRef?:  ((instance: any) => void) | React.MutableRefObject<any> | null;
     forcePlaceholder?: boolean;
@@ -81,18 +81,42 @@ class Text extends React.Component<TextProps, TextState> {
         /**
          * Default tag is <p/>.
          */
-        tag = tag || 'p';
+        const Tag: string = tag || 'p';
 
         if (!['input', 'textarea'].includes(tag)) {
             if (
                 (placeholder === 'lines' || placeholder == null) &&
                 (!fontFaceReady || forcePlaceholder)
             ) {
-                children = [Spanner({children, spannerClass: css.linesElement}), <span className='placeholder'/>];
+                children = [
+                    // @ts-ignore
+                    <Spanner key={0} children={children} spannerClass={css.linesElement}/>,
+                    <span className='placeholder' key={-1}/>
+                ];
             }
         } else {
             children = null;
         }
+
+        const tClassName = `
+                ${className} 
+                ${fontFaceReady && !forcePlaceholder ? '' : getClassNameFromPlaceholder(placeholder)}
+            `;
+
+        const tStyle = Object.assign(
+            {...style || {}},
+            {
+                '--placeholder-color': (placeholderOptions || {}).color || (style || {}).color,
+                '--better-containers-lines-height': `${(placeholderOptions || {}).linesHeight || 0.4}em`
+            }
+        );
+
+        const tRef = typeof this.props.innerRef === 'function' ?
+            node => {
+                // @ts-ignore
+                innerRef(node);
+                this.ref = {current: node};
+            } : this.ref;
 
         /**
          * React.createElement avoids some Typescript parsing errors (since component tag is a variable).
@@ -103,26 +127,14 @@ class Text extends React.Component<TextProps, TextState> {
          * --placeholder-color takes the current text color by default (with inherit value). It can be overridden by
          * props or local style.
          */
-        return React.createElement(
-            tag,
-            {
-                className: `${className} ${
-                    fontFaceReady && !forcePlaceholder ? '' : getClassNameFromPlaceholder(placeholder)
-                }`,
-                style: Object.assign({...style || {}}, {
-                    '--placeholder-color': (placeholderOptions || {}).color || (style || {}).color,
-                    '--better-containers-lines-height': `${(placeholderOptions || {}).linesHeight || 0.4}em`
-                }),
-                ref: typeof this.props.innerRef === 'function' ?
-                    node => {
-                        // @ts-ignore
-                        innerRef(node);
-                        this.ref = {current: node};
-                    } : this.ref,
-                ...props
-            },
-            children
-        );
+        return <Tag
+            // @ts-ignore
+            className={tClassName}
+            style={tStyle}
+            ref={tRef}
+            children={children}
+            {...props}
+        />;
     }
 }
 
