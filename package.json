@@ -8,7 +8,7 @@
     "url": "https://github.com/kushuh"
   },
   "description": "Handsome containers for React.",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "private": false,
   "dependencies": {
     "@types/react-dom": "^16.9.8",

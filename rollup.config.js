@@ -13,7 +13,9 @@ export default [
 		output: [
 			{
 				file: pkg.main,
-				format: 'cjs'
+				format: 'umd',
+				globals: { react: 'React' },
+				name: 'Containers'
 			}
 		],
 		external: [
@@ -29,7 +31,7 @@ export default [
 			postcss({
 				plugins: [autoprefixer()],
 				sourceMap: true,
-				extract: true,
+				extract: false,
 				minimize: true
 			}),
 			terser() // minifies generated bundles
