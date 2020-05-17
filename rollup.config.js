@@ -15,7 +15,7 @@ export default [
 				file: pkg.main,
 				format: 'umd',
 				globals: { react: 'React' },
-				name: 'Containers'
+				name: 'BetterContainers'
 			}
 		],
 		external: [
