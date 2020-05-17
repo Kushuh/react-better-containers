@@ -8,11 +8,11 @@ import postcss from 'rollup-plugin-postcss';
 export default [
 	// CommonJS
 	{
-		preserveModules: true,
+		inlineDynamicImports: true,
 		input: './src/index-build.ts',
 		output: [
 			{
-				dir: './build',
+				file: pkg.main,
 				format: 'cjs'
 			}
 		],
