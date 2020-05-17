@@ -9,7 +9,7 @@ export default [
 	// CommonJS
 	{
 		inlineDynamicImports: true,
-		input: './src/index-build.ts',
+		input: './src/index.ts',
 		output: [
 			{
 				file: pkg.main,
